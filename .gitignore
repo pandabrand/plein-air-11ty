@@ -1,6 +1,9 @@
 # dependencies installed by npm
 node_modules
 
+#local node verision management
+.nvmrc
+
 # build artefacts
 public
 src/css
