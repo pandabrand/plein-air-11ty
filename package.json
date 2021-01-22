@@ -53,5 +53,10 @@
   },
   "browserslist": [
     "last 2 versions"
-  ]
+  ],
+  "dependencies": {
+    "graphql": "^15.4.0",
+    "graphql-request": "^3.4.0",
+    "node-fetch": "^2.6.1"
+  }
 }

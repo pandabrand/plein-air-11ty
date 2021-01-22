@@ -1,0 +1,33 @@
+---
+layout: base
+title: artists block
+pagination:
+  data: artists
+  size: 12
+permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
+---
+<div class="tdbc-container">
+  <div class="tdbc-column-container">
+    {% for item in pagination.items %}
+      <div class="tdbc-card">
+        <div class="tdbc-card__content" style="background-color: rgb({{ item.color }});">
+          <div class="tdbc-card__title">
+            <a href="#" class="tdbc-card__title">{{ item.title }}</a>
+          </div>
+          {% for paintingDate in item.paintingDates.paintDates %}
+            <p>{{ paintingDate.date }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <nav aria-labelledby="my-pagination">
+    <hr/>
+    <ul class="tdbc-row tdbc-row--center-content tdbc-row--center-content tdbc-list-unstyled">
+      <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% else %}First{% endif %}</li>
+      <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Previous</a>{% else %}Previous{% endif %}</li>
+      <li>{% if pagination.page.next %}<a href="{{ pagination.href.next }}">Next</a>{% else %}Next{% endif %}</li>
+      <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">Last</a>{% else %}Last{% endif %}</li>
+    </ul>
+  </nav>
+</div>
