@@ -10,9 +10,10 @@ module.exports = async function() {
   `;
 
   const variables = { id: 'essay' };
+  const endpoint = process.env.GRAPHQL_URL;
 
   try {
-    const data = await request(process.env.GRAPHQL_URL, pageQuery, variables);
+    const data = await request(endpoint, pageQuery, variables);
 
     return data.page.content;
 
