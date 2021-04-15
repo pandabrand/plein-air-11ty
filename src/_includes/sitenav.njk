@@ -1,12 +1,12 @@
 <nav aria-labelledby="tdbc-siteid" class="tdbc-sitenav">
   <div class="tdbc-sitenav__container">
-    <a id="tdbc-siteid" href="/">{{ meta.siteName }}</a>
     <ul class="tdbc-sitenav__navlist tdbc-list-unstyled">
-      {%- for page in collections.pages -%}
+      {%- for page in collections.pages | navSort -%}
       <li>
         <a href="{{ page.url }}">{{ page.data.title }}</a>
       </li>
       {%- endfor -%}
     </ul>
+    <a id="tdbc-siteid" href="/">{{ meta.siteName }}</a>
   </div>
 </nav>

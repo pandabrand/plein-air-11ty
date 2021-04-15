@@ -59,6 +59,11 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
 
+  eleventyConfig.addFilter('navSort', function(values) {
+    let copyValues = [...values];
+    return copyValues.sort((a, b) => Math.sign(a.data.sortOrder - b.data.sortOrder));
+  });
+  
   return {
     passthroughFileCopy: true,
     dir: {

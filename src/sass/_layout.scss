@@ -17,6 +17,12 @@ main.tdbc-container {
 
 footer {
   margin-top: auto;
+  font-family: $tdbc-font-family-secondary;
+  text-transform: lowercase;
+  
+  p {
+    font-size: 0.8rem;
+  }
 }
 
 article {

@@ -1,12 +1,15 @@
 // stylelint-disable-next-line selector-max-id, selector-max-specificity
 #tdbc-siteid {
+  font-family: $tdbc-font-family-secondary;
   font-size: $tdbc-h3-font-size;
   text-decoration: none;
+  color: tdbc-color('primary');
 }
 
 // stylelint-disable selector-max-type
 .tdbc-sitenav {
-  background-color: tdbc-color("primary");
+  background-color: tdbc-color("light");
+  color: tdbc-color('text');
 
   &__container,
   &__navlist {
@@ -24,14 +27,16 @@
   }
 
   &__navlist {
+    font-family: $tdbc-font-family-secondary;
+    text-transform: uppercase;
     li + li {
-      margin-left: 0.5rem;
+      margin-left: 1.5rem;
     }
   }
 
   &,
   a:not(.tdbc-button) {
-    color: tdbc-color("light");
+    color: tdbc-color("text");
   }
 
   a:not(.tdbc-button):focus {

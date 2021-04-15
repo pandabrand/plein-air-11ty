@@ -1,6 +1,7 @@
 ---
-title: "About"
+title: "Home"
 description: "Review feature info and customization details."
+sortOrder: 1
 ---
 
 ## Intro to Jumpstart
