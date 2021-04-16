@@ -11,7 +11,7 @@ function randomColor() {
   return rgbArray.join(', ')
 }
 
-let archiveNumInt = 1;
+let archiveNumInt = 0;
 
 function archiveNum() {
   archiveNumInt++
