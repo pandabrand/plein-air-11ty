@@ -6,7 +6,22 @@
   border-radius: $tdbc-border-radius;
   background-color: #fff;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
-  min-height: 265px;
+  height: 330px;
+
+  &-image {
+    border-radius: $tdbc-border-radius;
+    width: 100%;
+    height: 181px;
+    
+    picture,
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &-text {
+    padding: 1rem;
+  }
 
   &__title {
     margin-bottom: 1rem;
@@ -17,6 +32,7 @@
 
   /* stylelint-disable selector-max-type, selector-no-qualifying-type */
   a.tdbc-card__title {
+    
     &::before {
       position: absolute;
       top: 0;
@@ -42,16 +58,21 @@
     position: relative;
     flex-direction: column;
     flex-grow: 1;
-    padding: 24px;
+    font-size: 24px;
 
-    a:last-child {
-      align-self: start;
-      margin-top: auto;
+    a {
+      text-decoration: none;
+      color: tdbc-color('text');
+      
+      &:last-child {
+        align-self: start;
+        margin-top: auto;
+      }
     }
 
     p {
       position: relative;
-      margin: 0 0 1rem;
+      margin: 0;
       z-index: 1;
     }
 
@@ -69,11 +90,11 @@
     box-shadow: 0 0 0 3px tdbc-color("primary");
   }
 
-  img:first-child {
-    object-fit: cover;
-    max-height: 10em;
-    border-radius: $tdbc-border-radius $tdbc-border-radius 0 0;
-  }
+  // img:first-child {
+  //   object-fit: cover;
+  //   max-height: 10em;
+  //   border-radius: $tdbc-border-radius $tdbc-border-radius 0 0;
+  // }
   // stylelint-enable
 
   &--outlined {

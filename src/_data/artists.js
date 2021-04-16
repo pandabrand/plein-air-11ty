@@ -11,6 +11,16 @@ function randomColor() {
   return rgbArray.join(', ')
 }
 
+let archiveNumInt = 1;
+
+function archiveNum() {
+  archiveNumInt++
+  if(archiveNumInt == 10) {
+    archiveNumInt = 1;
+  }
+  return archiveNumInt;
+}
+
 module.exports = async function() {
   const postQuery = gql`
       query PostsQuery {
@@ -20,6 +30,9 @@ module.exports = async function() {
             paintingDates {
               paintDates {
                 date
+                location {
+                  name
+                }
               }
             }
           }
@@ -30,9 +43,9 @@ module.exports = async function() {
 
   try {
     const data = await request(endpoint, postQuery);
-
     data.posts.nodes.map((node) => {
-      node['color'] = randomColor();
+      const imageNum = archiveNum();
+      node['panImage'] = `https://cc-backs.nyc3.digitaloceanspaces.com/cms-plein-air/2021/04/archive-${imageNum}@2x.png`;
     })
 
     return data.posts.nodes;
