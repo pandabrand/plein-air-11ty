@@ -9,17 +9,18 @@ body {
 }
 
 // stylelint-disable selector-max-type, selector-no-qualifying-type
-main,
-main.tdbc-container {
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-}
+// main,
+// main.tdbc-container {
+//   padding-top: 5vh;
+//   padding-bottom: 5vh;
+// }
 
 footer {
   margin-top: auto;
   font-family: $tdbc-font-family-secondary;
   text-transform: lowercase;
-  
+  box-shadow: 0px -1px 6px #00000029;
+
   p {
     font-size: 0.8rem;
   }
@@ -42,7 +43,7 @@ article {
   max-width: 120ch;
   margin-right: auto;
   margin-left: auto;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
 }
 
 .tdbc-column-container {
@@ -72,11 +73,19 @@ ul.tdbc-column-container {
 
 .tdbc-hero {
   display: grid;
-  min-height: 40vh;
-  place-content: center;
   padding-top: 10vh;
   padding-bottom: 10vh;
-  text-align: center;
+  text-align: left;
+
+  .tdbc-container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  h1 {
+    font: normal normal normal 24px/24px Syne;
+    color: tdbc-color('text');
+  }
 }
 
 .tdbc-row {

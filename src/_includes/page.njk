@@ -4,10 +4,11 @@ layout: base.njk
 
 <header class="tdbc-hero">
   <div class="tdbc-container">
-    <h1 class="tdbc-ink--primary tdbc-mb-none">{{ title }}</h1>
-    <h2 class="tdbc-lead tdbc-content-maxlength tdbc-ink--gray tdbc-mt-md tdbc-mx-auto">
-      {{ description }}
-    </h2>
+    <div class="tdbc-mx-auto tdbc-content-maxlength tdbc-w-100">
+      <div class="tdbc-container">
+        <h1 class="tdbc-ink--primary tdbc-mb-none">{{ fullTitle if fullTitle else title }}</h1>
+      </div>
+    </div>
   </div>
 </header>
 <main class="tdbc-container">

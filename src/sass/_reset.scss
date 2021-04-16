@@ -56,6 +56,11 @@ body {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
 }
 
 /* Inherit fonts for inputs and buttons */
