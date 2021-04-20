@@ -16,7 +16,7 @@ module.exports = async function() {
   const variables = { slug: 'fullpan' };
   const endpoint = process.env.GRAPHQL_URL;
   const imageKitEndpoint = 'https://ik.imagekit.io/studiofwww/';
-  const spacesUrl = 'https://cc-backs.nyc3.digitaloceanspaces.com/';
+  const spacesUrl = 'https://cc-backs.nyc3.digitaloceanspaces.com/cms-plein-air/';
 
   var imagekit = new ImageKit({
       publicKey : "public_PMrFGDYsz71y7jDwgaNYL8fQcNo=",
