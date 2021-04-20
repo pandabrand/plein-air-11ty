@@ -27,11 +27,16 @@ footer {
 }
 
 article {
-  max-width: 80ch;
+  margin-top: 5rem;
+  max-width: 100%;
 
   > img {
     margin-right: auto;
     margin-left: auto;
+  }
+
+  header {
+    margin-bottom: 3rem;
   }
 }
 // stylelint-enable

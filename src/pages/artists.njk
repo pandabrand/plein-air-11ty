@@ -12,13 +12,13 @@ permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
     {% for item in pagination.items %}
       {% for paintingDate in item.paintingDates.paintDates %}
       <div class="tdbc-card">
-        <div class="tdbc-card__content" style="background-color: rgb({{ item.color }});">
+        <div class="tdbc-card__content">
           <div class="tdbc-card-image">
             <img src="{{item.panImage}}" alt="">
           </div>
           <div class="tdbc-card-text">
             <div class="tdbc-card__title">
-              <a href="#">
+              <a href="/painting-date/{{ paintingDate.date | slug }}-{{ item.title | slug }}/">
               <p>{{ paintingDate.date }}</p>
               <p>{{ item.title }}</p>
               <p>{{ paintingDate.location[0].name }}</p>

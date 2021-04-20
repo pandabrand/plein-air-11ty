@@ -1,0 +1,57 @@
+---
+pagination:
+  data: artist
+  size: 1
+  alias: paintingDate
+layout: base
+permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title | slug }}/"
+---
+  
+<div class="tdbc-container">
+  <article>
+    <header>
+      <div class="tdbc-column-container">
+        <section class="text-box">
+          <h2>Recollections</h2>
+          <div class="text-box--header">
+            <h2>{{paintingDate.date}}</h2>
+            <h4>{{paintingDate.title}}</h4>
+            <h4>{{paintingDate.location.name}}</h4>
+          </div>
+          <div class="text-box--content">
+            {{paintingDate.content | safe}}
+          </div>
+        </section>
+        <section class="image--portrait">
+          <img src="{{paintingDate.portrait[0].imageKitUrl}}" alt="" srcset="">
+        </section>
+      </div>
+    </header>
+    <section class="images">
+      <div class="images-row">
+        <h5>Artist Images</h5>
+        <div class="image-slider">
+          {% for image in paintingDate.artistImages %}
+            <img src="{{image.imageKitUrl}}" alt="" srcset="">
+          {% endfor %}
+        </div>
+      </div>
+      <div class="images-row">
+        <h5>Leslie Images</h5>
+        <div class="image-slider">
+          {% for image in paintingDate.leslieImages %}
+            <img src="{{image.imageKitUrl}}" alt="" srcset="">
+          {% endfor %}
+        </div>
+      </div>
+      <div class="images-row">
+        <h5>Location Images</h5>
+        <div class="image-slider">
+          {% for image in paintingDate.LocationImages %}
+            <img src="{{image.imageKitUrl}}" alt="" srcset="">
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </article>
+</div>

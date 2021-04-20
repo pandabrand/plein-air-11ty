@@ -1,0 +1,13 @@
+.image-slider {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+  overflow-x: auto;
+
+  &> {
+    max-width: 100%;
+    height: 280px;
+    margin: auto 2rem;
+  } 
+}

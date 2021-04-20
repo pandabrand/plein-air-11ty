@@ -1,15 +1,5 @@
 const { request, gql } = require('graphql-request');
-
-function randomColor() {
-  const numValues = 3;
-  let whileNumber = 0;
-  let rgbArray = [];
-  while (whileNumber < numValues) {
-    rgbArray[whileNumber] = Math.floor(Math.random() * (255 - 0) + 0);
-    whileNumber++;
-  }
-  return rgbArray.join(', ')
-}
+const ImageKit = require("imagekit");
 
 let archiveNumInt = 0;
 
@@ -40,12 +30,22 @@ module.exports = async function() {
       }
   `;
   const endpoint = process.env.GRAPHQL_URL;
+  const imageKitEndpoint = process.env.IK_ENDPOINT;
+
+  var imagekit = new ImageKit({
+      publicKey : process.env.IK_PUBLIC_KEY,
+      privateKey : process.env.IK_PRIVATE_KEY,
+      urlEndpoint : imageKitEndpoint
+  });
 
   try {
     const data = await request(endpoint, postQuery);
     data.posts.nodes.map((node) => {
       const imageNum = archiveNum();
-      node['panImage'] = `https://cc-backs.nyc3.digitaloceanspaces.com/cms-plein-air/2021/04/archive-${imageNum}@2x.png`;
+      node['panImage'] = imagekit.url({
+        path: `2021/04/archive-${imageNum}@2x.png`,
+        endpoint: imageKitEndpoint,
+      });
     })
 
     return data.posts.nodes;

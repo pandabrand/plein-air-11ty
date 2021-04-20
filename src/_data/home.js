@@ -15,13 +15,13 @@ module.exports = async function() {
 
   const variables = { slug: 'fullpan' };
   const endpoint = process.env.GRAPHQL_URL;
-  const imageKitEndpoint = 'https://ik.imagekit.io/studiofwww/';
-  const spacesUrl = 'https://cc-backs.nyc3.digitaloceanspaces.com/cms-plein-air/';
+  const imageKitEndpoint = process.env.IK_ENDPOINT;
+  const spacesUrl = process.env.DO_ENDPOINT;
 
   var imagekit = new ImageKit({
-      publicKey : "public_PMrFGDYsz71y7jDwgaNYL8fQcNo=",
-      privateKey : "private_Xi9yHcVl8f3CgpvW1zNl7zPtf/0=",
-      urlEndpoint : "https://ik.imagekit.io/studiofwww"
+      publicKey : process.env.IK_PUBLIC_KEY,
+      privateKey : process.env.IK_PRIVATE_KEY,
+      urlEndpoint : imageKitEndpoint
   });
 
   try {
