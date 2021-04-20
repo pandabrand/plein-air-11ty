@@ -2,7 +2,7 @@
 node_modules
 
 #local node verision management
-.nvmrc
+# .nvmrc
 
 # build artefacts
 public
