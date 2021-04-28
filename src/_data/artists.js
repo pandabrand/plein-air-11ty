@@ -1,16 +1,6 @@
 const { request, gql } = require('graphql-request');
 const ImageKit = require("imagekit");
 
-let archiveNumInt = 0;
-
-function archiveNum() {
-  archiveNumInt++
-  if(archiveNumInt == 10) {
-    archiveNumInt = 1;
-  }
-  return archiveNumInt;
-}
-
 module.exports = async function() {
   const postQuery = gql`
       query PostsQuery {
@@ -40,12 +30,16 @@ module.exports = async function() {
 
   try {
     const data = await request(endpoint, postQuery);
-    data.posts.nodes.map((node) => {
-      const imageNum = archiveNum();
+    let archiveNumInt = 1;
+
+    data.posts.nodes.forEach((node) => {
+      archiveNumInt = (10 === archiveNumInt) ? 1 : archiveNumInt;
+      const imagePath = `2021/04/archive-${archiveNumInt}@2x.png`;
       node['panImage'] = imagekit.url({
-        path: `2021/04/archive-${imageNum}@2x.png`,
+        path: imagePath,
         endpoint: imageKitEndpoint,
       });
+      archiveNumInt++;
     })
 
     return data.posts.nodes;

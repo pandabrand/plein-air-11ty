@@ -1,13 +1,14 @@
-.image-slider {
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: row;
-  height: 300px;
-  overflow-x: auto;
+.images-row {
+  margin: 2rem 0 4rem;
 
-  &> {
-    max-width: 100%;
-    height: 280px;
-    margin: auto 2rem;
-  } 
+  .flickity-viewport {
+    border: 1px solid rgba(tdbc-color('gray'), 0.2);
+  }
+}
+
+.image-slider {
+  img {
+    height: 300px;
+    margin: auto 1rem; 
+  }
 }

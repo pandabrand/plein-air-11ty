@@ -1,0 +1,12 @@
+.artist {
+  .text-box {
+    height: 340px;
+    overflow-y: auto;
+    padding: 0.25em;
+    border: 1px solid rgba(tdbc-color('gray'), 0.2);
+  }
+
+  .text-box--content {
+    padding-bottom: 2rem;
+  }
+}

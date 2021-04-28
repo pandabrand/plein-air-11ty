@@ -8,15 +8,15 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
 ---
   
 <div class="tdbc-container">
-  <article>
+  <article class="artist">
     <header>
       <div class="tdbc-column-container">
         <section class="text-box">
           <h2>Recollections</h2>
           <div class="text-box--header">
-            <h2>{{paintingDate.date}}</h2>
+            <h3>{{paintingDate.date}}</h3>
             <h4>{{paintingDate.title}}</h4>
-            <h4>{{paintingDate.location.name}}</h4>
+            <h4>{{paintingDate.location[0].name}}</h4>
           </div>
           <div class="text-box--content">
             {{paintingDate.content | safe}}
@@ -28,30 +28,42 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
       </div>
     </header>
     <section class="images">
-      <div class="images-row">
-        <h5>Artist Images</h5>
-        <div class="image-slider">
-          {% for image in paintingDate.artistImages %}
-            <img src="{{image.imageKitUrl}}" alt="" srcset="">
-          {% endfor %}
+      {% if paintingDate.artistImages %}
+        <div class="images-row">
+          <h5>Artist Images</h5>
+          <div class="image-slider" data-flickity='{"wrapAround": true, "imagesLoaded": true, "contain": true}'>
+            {% for image in paintingDate.artistImages %}
+              <div class="image-cell">
+                <img src="{{image.imageKitUrl}}" alt="" srcset="">
+              </div>
+            {% endfor %}
+          </div>
         </div>
-      </div>
-      <div class="images-row">
-        <h5>Leslie Images</h5>
-        <div class="image-slider">
-          {% for image in paintingDate.leslieImages %}
-            <img src="{{image.imageKitUrl}}" alt="" srcset="">
-          {% endfor %}
+        {% endif %}
+      {% if paintingDate.leslieImages %}
+        <div class="images-row">
+          <h5>Leslie Images</h5>
+          <div class="image-slider" data-flickity='{"wrapAround": true, "imagesLoaded": true, "contain": true}'>
+            {% for image in paintingDate.leslieImages %}
+              <div class="image-cell">
+                <img src="{{image.imageKitUrl}}" alt="" srcset="">
+              </div>
+            {% endfor %}
+          </div>
         </div>
-      </div>
-      <div class="images-row">
-        <h5>Location Images</h5>
-        <div class="image-slider">
-          {% for image in paintingDate.LocationImages %}
-            <img src="{{image.imageKitUrl}}" alt="" srcset="">
-          {% endfor %}
+      {% endif %}
+      {% if paintingDate.LocationImages %}
+        <div class="images-row">
+          <h5>Location Images</h5>
+          <div class="image-slider" data-flickity='{"wrapAround": true, "imagesLoaded": true, "contain": true}'>
+            {% for image in paintingDate.LocationImages %}
+              <div class="image-cell">
+                <img src="{{image.imageKitUrl}}" alt="" srcset="">
+              </div>
+            {% endfor %}
+          </div>
         </div>
-      </div>
+      {% endif %}
     </section>
   </article>
 </div>

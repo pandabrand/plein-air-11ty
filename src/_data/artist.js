@@ -5,7 +5,7 @@ const ImageKit = require("imagekit");
 module.exports = async function() {
   const artistPageQuery = gql`
     query artistPostsQuery {
-      posts(first: 50, where: { orderby: { field: TITLE, order: ASC } }) {
+      posts(first: 40, where: { orderby: { field: TITLE, order: ASC } }) {
         nodes {
           title
           content
