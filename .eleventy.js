@@ -64,6 +64,10 @@ module.exports = function (eleventyConfig) {
     return copyValues.sort((a, b) => Math.sign(a.data.sortOrder - b.data.sortOrder));
   });
   
+  eleventyConfig.addPassthroughCopy({
+    "./src/js/carousel.js": "assets/carousel.js",
+  });
+
   return {
     passthroughFileCopy: true,
     dir: {

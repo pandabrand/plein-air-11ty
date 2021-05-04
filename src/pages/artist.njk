@@ -31,37 +31,22 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
       {% if paintingDate.artistImages %}
         <div class="images-row">
           <h5>Artist Images</h5>
-          <div class="image-slider" data-flickity='{"wrapAround": true, "imagesLoaded": true, "contain": true}'>
-            {% for image in paintingDate.artistImages %}
-              <div class="image-cell">
-                <img src="{{image.imageKitUrl}}" alt="" srcset="">
-              </div>
-            {% endfor %}
-          </div>
+            {% set images = paintingDate.artistImages %}
+            {% include 'carousel.njk' %}
         </div>
-        {% endif %}
+      {% endif %}
       {% if paintingDate.leslieImages %}
         <div class="images-row">
           <h5>Leslie Images</h5>
-          <div class="image-slider" data-flickity='{"wrapAround": true, "imagesLoaded": true, "contain": true}'>
-            {% for image in paintingDate.leslieImages %}
-              <div class="image-cell">
-                <img src="{{image.imageKitUrl}}" alt="" srcset="">
-              </div>
-            {% endfor %}
-          </div>
+          {% set images = paintingDate.leslieImages %}
+          {% include 'carousel.njk' %}
         </div>
       {% endif %}
       {% if paintingDate.LocationImages %}
         <div class="images-row">
           <h5>Location Images</h5>
-          <div class="image-slider" data-flickity='{"wrapAround": true, "imagesLoaded": true, "contain": true}'>
-            {% for image in paintingDate.LocationImages %}
-              <div class="image-cell">
-                <img src="{{image.imageKitUrl}}" alt="" srcset="">
-              </div>
-            {% endfor %}
-          </div>
+            {% set images = paintingDate.LocationImages %}
+            {% include 'carousel.njk' %}
         </div>
       {% endif %}
     </section>

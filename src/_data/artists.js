@@ -33,13 +33,12 @@ module.exports = async function() {
     let archiveNumInt = 1;
 
     data.posts.nodes.forEach((node) => {
-      archiveNumInt = (10 === archiveNumInt) ? 1 : archiveNumInt;
-      const imagePath = `2021/04/archive-${archiveNumInt}@2x.png`;
-      node['panImage'] = imagekit.url({
-        path: imagePath,
-        endpoint: imageKitEndpoint,
-      });
-      archiveNumInt++;
+      node.paintingDates.paintDates.forEach((paintDate) => {
+        archiveNumInt = (10 === archiveNumInt) ? 1 : archiveNumInt;
+        const imagePath = `https://ik.imagekit.io/studiofwww/2021/04/archive-${archiveNumInt}@2x.png`;
+        paintDate['panImage'] = imagePath;
+        archiveNumInt++;
+      })
     })
 
     return data.posts.nodes;

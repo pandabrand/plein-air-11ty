@@ -1,25 +1,24 @@
 ---
+layout: base
 title: "Paintings"
 sortOrder: 2
 ---
-
-<style>
-  .logo {
-    width: 70vmax;
-    height: 50vmax;
-    margin: 4rem auto 4rem;
-  }
-
-  .logo svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .tdbc-hero {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-  }
-</style>
-<main class="tdbc-container">
-  <img class="logo" src="{{ home.imageKitUrl }}" alt="{{ home.altText }}" srcset="">
-</main>
+<div class="tdbc-container">
+  <main>
+    <article>
+      <p>Something will be put here that says something nice.</p>
+    </article>
+  </main>
+  <div class="tdbc-column-container wide">
+    {% for node in paintings %}
+        <div class="">
+          <div class="">
+            <img src="{{node.imageKitUrl}}" alt="">
+          </div>
+          <div class="">
+            <p>{{ node.description | safe }}</p>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>

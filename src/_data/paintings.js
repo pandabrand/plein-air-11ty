@@ -2,18 +2,19 @@ const { request, gql } = require('graphql-request');
 const ImageKit = require("imagekit");
 
 module.exports = async function() {
-  const pageQuery = gql`
-      query HomeQuery($slug: String!) {
-        mediaItemBy(slug: $slug) {
-          mediaItemUrl
-          slug
-          altText
-          sourceUrl
+  const paintingsQuery = gql`
+      query PaintingsQuery($search: String!) {
+        mediaItems(where: {search: $search}, first: 25) {
+          nodes {
+            sourceUrl
+            description
+            altText
+          }
         }
       }
   `;
 
-  const variables = { slug: 'fullpan' };
+  const variables = { search: 'Baum Painting' };
   const endpoint = process.env.GRAPHQL_URL;
   const imageKitEndpoint = process.env.IK_ENDPOINT;
   const spacesUrl = process.env.DO_ENDPOINT;
@@ -25,15 +26,17 @@ module.exports = async function() {
   });
 
   try {
-    const data = await request(endpoint, pageQuery, variables);
+    const data = await request(endpoint, paintingsQuery, variables);
 
-    const imagePath = data.mediaItemBy.mediaItemUrl.substring(spacesUrl.length);
-    data.mediaItemBy['imageKitUrl'] = imagekit.url({
-      path: imagePath,
-      endpoint: imageKitEndpoint,
-    });
+    data.mediaItems.nodes.map((node) => {
+      const imagePath = node.sourceUrl.substring(spacesUrl.length);
+      node['imageKitUrl'] = imagekit.url({
+        path: imagePath,
+        endpoint: imageKitEndpoint,
+      });
+    })
 
-    return data.mediaItemBy;
+    return data.mediaItems.nodes;
 
   } catch (error) {
     throw new Error( error );
