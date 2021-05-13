@@ -3,31 +3,29 @@ layout: base
 title: Archives
 sortOrder: 4
 pagination:
-  data: artists
-  size: 12
+  data: artist
+  size: 18
 permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
 ---
 <div class="tdbc-container">
   <div class="tdbc-column-container">
     {% for item in pagination.items %}
-      {% for paintingDate in item.paintingDates.paintDates %}
       <div class="tdbc-card">
         <div class="tdbc-card__content">
           <div class="tdbc-card-image">
-            <img src="{{paintingDate.panImage}}" alt="">
+            <img src="{{item.panImage}}" alt="">
           </div>
           <div class="tdbc-card-text">
             <div class="tdbc-card__title">
-              <a href="/painting-date/{{ paintingDate.date | slug }}-{{ item.title | slug }}/">
-              <p>{{ paintingDate.date }}</p>
+              <a href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
+              <p>{{ item.date }}</p>
               <p>{{ item.title }}</p>
-              <p>{{ paintingDate.location[0].name }}</p>
+              <p>{{ item.location[0].name }}</p>
               </a>
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
     {% endfor %}
   </div>
   <nav aria-labelledby="my-pagination">

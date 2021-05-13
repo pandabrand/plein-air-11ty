@@ -5,7 +5,7 @@ const ImageKit = require("imagekit");
 module.exports = async function() {
   const artistPageQuery = gql`
     query artistPostsQuery {
-      posts(first: 40, where: { orderby: { field: TITLE, order: ASC } }) {
+      posts(first: 100) {
         nodes {
           title
           content
@@ -40,9 +40,11 @@ module.exports = async function() {
     });
   
     let exportPaintDates = [];
+    const panNumbers = [1,2,3,4,5,6,7,8,9,5,3,2,6,1,7,4,9,8];
+    let archiveNumInt = 0;
     try {
       const data = await request(endpoint, artistPageQuery);
-      data.posts.nodes.map((node) => {
+      data.posts.nodes.reverse().map((node) => {
         const title = node.title;
         const content = node.content;
         node.paintingDates.paintDates.forEach((paintDate) => {
@@ -66,7 +68,11 @@ module.exports = async function() {
           paintDate['artistImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Artist Image')
           paintDate['leslieImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Leslie Image')
           paintDate['locationImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Location')
+          archiveNumInt = (panNumbers.length === archiveNumInt) ? 0 : archiveNumInt;
+          const imagePath = `https://ik.imagekit.io/studiofwww/2021/04/archive-${panNumbers[archiveNumInt]}@2x.png`;
+          paintDate['panImage'] = imagePath;
           exportPaintDates.push(paintDate);
+          archiveNumInt++;
         })
       })
   

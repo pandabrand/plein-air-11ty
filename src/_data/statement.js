@@ -4,7 +4,7 @@ module.exports = async function() {
   const pageQuery = gql`
       query statementQuery($uri: String!) {
         pageBy(uri: $uri) {
-          content(format: RENDERED)
+          content
         }
       }
   `;
