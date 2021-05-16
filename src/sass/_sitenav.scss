@@ -10,13 +10,31 @@
 .tdbc-sitenav {
   background-color: tdbc-color("light");
   color: tdbc-color('text');
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
 
-  &__container,
-  &__navlist {
+  &__container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
   }
+
+  &__navlist {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15ch;
+    
+    @media screen and (min-width: 768px) {
+      margin-top: initial;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
 
   &__container {
     justify-content: space-between;
@@ -24,13 +42,67 @@
     max-width: 120ch;
     margin: 0 auto;
     padding: 0.25rem 0.5rem;
+
+    .collapse {
+      margin-right: -15px;
+      margin-left: -15px;
+      padding-right: 15px;
+      padding-left: 15px;
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba($color: #000000, $alpha: 0.1);
+      display: none;
+      transition: all .3s;
+      position: relative;
+      
+      @media screen and (min-width: 768px) {
+        box-shadow: none;
+      }
+
+      &.in {
+        background-color: #fff;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: block;
+        transition: all .3s;
+        position: absolute;
+        top: 55px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 25;
+      }
+
+      @media screen and (min-width: 768px) {
+        display: flex;
+        height: auto;
+        padding-bottom: 0;
+        overflow: visible;
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
   }
 
   &__navlist {
     font-family: $tdbc-font-family-secondary;
     text-transform: uppercase;
+  
+    li {
+      margin-bottom: 2ch;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 0;
+      }
+    }
+
     li + li {
-      margin-left: 1.5rem;
+      margin-left: 0;
+      margin-bottom: 2ch;
+      
+      @media screen and (min-width: 768px) {
+        margin-bottom: 0;
+        margin-left: 1.5rem;
+      }
     }
   }
 
@@ -44,6 +116,35 @@
     outline-color: transparent;
     outline-style: solid;
     box-shadow: 0 0 1px 2px tdbc-color("light");
+  }
+
+  .navbar-toggle {
+    background-color: #fff;
+    position: relative;
+    float: left;
+    padding: 9px 10px 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 15px;
+    border-radius: 4px;
+    border: 1px solid tdbc-color("primary");
+
+    .icon-bar {
+      background-color: $tdbc-color-primary;
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      margin-bottom: 5px;
+
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
   }
 }
 // stylelint-enable

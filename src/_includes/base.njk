@@ -14,9 +14,10 @@
     />
     <link rel="icon" href="{{ '/favicon.png' | url }}" />
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
-    <link href="https://fonts.googleapis.com/css2?family=Farro:wght@400;500&family=Syne&display=swap" rel="stylesheet">
-    <link href="{{ '/css/style.css' | url }}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    {% block headStyles %}
+      <link href="https://fonts.googleapis.com/css2?family=Farro:wght@400;500&family=Syne&display=swap" rel="stylesheet">
+      <link href="{{ '/css/style.css' | url }}" rel="stylesheet" />
+    {% endblock %}
     <meta name="twitter:card" content="summary_large_image" />
     {% if meta.twitterUsername %}
     <meta name="twitter:creator" content="@{{ meta.twitterUsername }}" />
@@ -49,7 +50,9 @@
     />
   </head>
   <body>
-    {% include 'sitenav.njk' %}
+    <header>
+      {% include 'sitenav.njk' %}
+    </header>
 
     {{ content | safe }}
 
@@ -60,6 +63,8 @@
         </div>
       </div>
     </footer>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    {% block footerScripts %}
+      <script src="{{ '/assets/js/nav.js' | url }}"></script>
+    {% endblock %}
   </body>
 </html>

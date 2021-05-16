@@ -1,5 +1,12 @@
-<div class="image-slider" data-flickity='{ "imagesLoaded": true, "percentPosition": false, "contain": true }'>
-  {% for image in images %}
-    <img src="{{image.imageKitUrl}}" alt="">
-  {% endfor %}
+<div class="{{ swipeClass }}-swiper swiper-container">
+  <div class="swiper-wrapper">
+    {% for image in images %}
+      <div class="swiper-slide">
+        <img src="{{image.imageKitUrl}}" alt="">
+      </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-button-prev {{ swipeClass }}-prev"></div>
+  <div class="swiper-button-next {{ swipeClass }}-next"></div>
+  <div class="swiper-scrollbar {{ swipeClass }}"></div>
 </div>

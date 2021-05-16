@@ -65,7 +65,8 @@ module.exports = function (eleventyConfig) {
   });
   
   eleventyConfig.addPassthroughCopy({
-    "./src/js/carousel.js": "assets/carousel.js",
+    "./src/js/carousel.js": "assets/js/carousel.js",
+    "./src/js/nav.js": "assets/js/nav.js",
   });
 
   return {

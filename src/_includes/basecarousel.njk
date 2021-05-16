@@ -1,0 +1,11 @@
+{% extends './base.njk' %}
+{% block headStyles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://unpkg.com/swiper@6.6.1/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block footerScripts %}
+  {{ super() }}
+    <script src="https://unpkg.com/swiper@6.6.1/swiper-bundle.min.js"></script>
+    <script src="{{ '/assets/js/carousel.js' | url }}"></script>
+{% endblock %}

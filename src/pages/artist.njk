@@ -3,7 +3,7 @@ pagination:
   data: artist
   size: 1
   alias: paintingDate
-layout: base
+layout: basecarousel
 permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title | slug }}/"
 ---
   
@@ -32,6 +32,7 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
         <div class="images-row">
           <h5>Artist Images</h5>
             {% set images = paintingDate.artistImages %}
+            {% set swipeClass = 'artist' %}
             {% include 'carousel.njk' %}
         </div>
       {% endif %}
@@ -39,6 +40,7 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
         <div class="images-row">
           <h5>Leslie Images</h5>
           {% set images = paintingDate.leslieImages %}
+          {% set swipeClass = 'leslie' %}
           {% include 'carousel.njk' %}
         </div>
       {% endif %}
@@ -46,6 +48,7 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
         <div class="images-row">
           <h5>Location Images</h5>
             {% set images = paintingDate.LocationImages %}
+            {% set swipeClass = 'location' %}
             {% include 'carousel.njk' %}
         </div>
       {% endif %}

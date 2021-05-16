@@ -1,15 +1,23 @@
 <nav aria-labelledby="tdbc-siteid" class="tdbc-sitenav">
   <div class="tdbc-sitenav__container">
-    <ul class="tdbc-sitenav__navlist tdbc-list-unstyled">
-      <li>
-        <a href="/">Home</a>
-      </li>
-      {%- for page in collections.pages | navSort -%}
-      <li>
-        <a href="{{ page.url }}">{{ page.data.title }}</a>
-      </li>
-      {%- endfor -%}
-    </ul>
+    <div class="collapse">
+      <ul class="tdbc-sitenav__navlist tdbc-list-unstyled">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {%- for page in collections.pages | navSort -%}
+        <li>
+          <a href="{{ page.url }}">{{ page.data.title }}</a>
+        </li>
+        {%- endfor -%}
+      </ul>
+    </div>
     <a id="tdbc-siteid" href="/">{{ meta.siteName }}</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
   </div>
 </nav>
