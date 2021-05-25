@@ -6,7 +6,7 @@ const swiperOptions = {
       slidesPerView: 2,
       spaceBetween: 20,
     },
-    640: {
+    1024: {
       slidesPerView: 3,
       spaceBetween: 30,
     },
@@ -43,3 +43,17 @@ if( null !== document.querySelector('.location-swiper') ) {
     }
   });
 }
+
+// https://daily-dev-tips.com/posts/javascript-lightbox-effect-without-using-plugins/
+// https://codepen.io/rebelchris/pen/gOMqvEK
+
+const lightbox = document.getElementById("lightbox");
+const lightboxHolder = document.getElementById("lightbox-image");
+
+openLightbox = (element) => {
+  lightboxHolder.src = element.dataset.fullSrc;
+  lightbox.classList.remove("hidden");
+};
+
+closeLightbox = () => lightbox.classList.add("hidden");
+

@@ -2,8 +2,8 @@
   .text-box {
     height: 340px;
     overflow-y: auto;
-    padding: 0.25em;
-    border: 1px solid rgba(tdbc-color('gray'), 0.2);
+    padding: 0.5em;
+    box-shadow: inset rgba(tdbc-color('gray'), 0.2) 2px 2px 5px;
   }
 
   .text-box--content {

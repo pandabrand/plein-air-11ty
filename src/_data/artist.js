@@ -63,6 +63,15 @@ module.exports = async function() {
               }];
             }
             imageObj['imageKitUrl'] = imagekit.url(ioObject)
+
+            if(imageObj?.imageType?.name != 'Portait') {
+              ioObject['transformation'] = [{
+                height: '300',
+                width: '300',
+                crop: 'at_max'
+              }];
+              imageObj['imageKitThumbUrl'] = imagekit.url(ioObject)
+            }
           })
           paintDate['portrait'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Portait')
           paintDate['artistImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Artist Image')

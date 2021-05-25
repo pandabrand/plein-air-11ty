@@ -2,7 +2,7 @@
   <div class="swiper-wrapper">
     {% for image in images %}
       <div class="swiper-slide">
-        <img src="{{image.imageKitUrl}}" alt="">
+        <img data-full-src="{{image.imageKitUrl}}" src="{{image.imageKitThumbUrl}}" alt="" onClick="openLightbox(this)">
       </div>
     {% endfor %}
   </div>
