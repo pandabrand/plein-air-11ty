@@ -10,6 +10,9 @@ module.exports = async function() {
           altText
           sourceUrl
         }
+        pageBy(slug: $slug) {
+          content
+        }
       }
   `;
 
@@ -33,7 +36,7 @@ module.exports = async function() {
       endpoint: imageKitEndpoint,
     });
 
-    return data.mediaItemBy;
+    return data;
 
   } catch (error) {
     throw new Error( error );
