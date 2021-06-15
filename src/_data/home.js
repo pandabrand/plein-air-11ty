@@ -16,7 +16,7 @@ module.exports = async function() {
       }
   `;
 
-  const variables = { slug: 'fullpan', url: 'home-page' };
+  const variables = { slug: 'fullpan', uri: 'home-page' };
   const endpoint = process.env.GRAPHQL_URL;
   const imageKitEndpoint = process.env.IK_ENDPOINT;
   const spacesUrl = process.env.DO_ENDPOINT;
