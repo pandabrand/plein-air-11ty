@@ -24,6 +24,6 @@ templateEngineOverride: md, njk
 <main class="tdbc-container">
   <img class="logo" src="{{ home.mediaItemBy.imageKitUrl }}" alt="{{ home.mediaItemBy.altText }}" srcset="">
   <section class="tdbc-section">
-    {{ home.pageBy.content }}
+    {{ home.pageBy.content | safe }}
   </section>
 </main>
