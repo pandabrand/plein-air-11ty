@@ -32,6 +32,7 @@
 
   /* stylelint-disable selector-max-type, selector-no-qualifying-type */
   a.tdbc-card__title {
+    padding: 1ch 1ch 0;
     
     &::before {
       position: absolute;
