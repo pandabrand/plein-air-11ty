@@ -3,20 +3,20 @@ const ImageKit = require("imagekit");
 
 module.exports = async function() {
   const pageQuery = gql`
-      query HomeQuery($slug: String!) {
+      query HomeQuery($slug: String!, $uri: String!) {
         mediaItemBy(slug: $slug) {
           mediaItemUrl
           slug
           altText
           sourceUrl
         }
-        pageBy(slug: $slug) {
+        pageBy(uri: $uri) {
           content
         }
       }
   `;
 
-  const variables = { slug: 'fullpan' };
+  const variables = { slug: 'fullpan', url: 'home-page' };
   const endpoint = process.env.GRAPHQL_URL;
   const imageKitEndpoint = process.env.IK_ENDPOINT;
   const spacesUrl = process.env.DO_ENDPOINT;
