@@ -22,8 +22,10 @@ templateEngineOverride: md, njk
   }
 </style>
 <main class="tdbc-container">
-  <img class="logo" src="{{ home.mediaItemBy.imageKitUrl }}" alt="{{ home.mediaItemBy.altText }}" srcset="">
-  <section class="tdbc-section">
+  <a href="/artists/1/">
+    <img class="logo" src="{{ home.mediaItemBy.imageKitUrl }}" alt="{{ home.mediaItemBy.altText }}" srcset="">
+  </a>
+  <section class="tdbc-mx-auto tdbc-section--padded">
     {{ home.pageBy.content | safe }}
   </section>
 </main>

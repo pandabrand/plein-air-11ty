@@ -15,15 +15,13 @@ permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
           <div class="tdbc-card-image">
             <img src="{{item.panImage}}" alt="">
           </div>
-          <div class="tdbc-card-text">
-            <div class="tdbc-card__title">
-              <a href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
+            <a class="tdbc-card__title" href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
               <p>{{ item.date }}</p>
+            </a>
+            <div class="tdbc-card-text">
               <p>{{ item.title }}</p>
               <p>{{ item.location[0].name }}</p>
-              </a>
             </div>
-          </div>
         </div>
       </div>
     {% endfor %}
