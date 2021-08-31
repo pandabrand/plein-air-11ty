@@ -61,6 +61,18 @@ article {
   }
 }
 
+.tdbc-two-column-container {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: grid;
+  grid-gap: 2em;
+}
+
+@media screen and (min-width: 1024px) {
+  .tdbc-two-column-container {
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+  }
+}
+
 // stylelint-disable-next-line selector-no-qualifying-type, selector-max-type
 ul.tdbc-column-container {
   padding-left: 0;
