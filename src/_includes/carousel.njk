@@ -3,6 +3,9 @@
     {% for image in images %}
       <div class="swiper-slide">
         <img data-full-src="{{image.imageKitUrl}}" src="{{image.imageKitThumbUrl}}" alt="" onClick="openLightbox(this)">
+        {% if image.imageCredit %}
+          <div>{{ image.imageCredit[0].name }}</div>
+        {% endif %}
       </div>
     {% endfor %}
   </div>

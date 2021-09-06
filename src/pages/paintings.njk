@@ -6,11 +6,11 @@ sortOrder: 3
 <div class="tdbc-container">
   <main>
     <article>
-      <h1>Paintings</h1>
-      <p></p>
+      <h1>Shaping The Day Paintings</h1>
+      <p>{{ paintings.pageBy.content | safe }}</p>
     </article>
     <div class="tdbc-two-column-container">
-      {% for node in paintings %}
+      {% for node in paintings.mediaItems.nodes %}
           <div>
               <img src="{{node.imageKitUrl}}" alt="">
             <div>
