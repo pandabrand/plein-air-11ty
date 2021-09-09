@@ -15,7 +15,7 @@ $tdbc-typography-variants: h1, h2, h3, h4;
 h1,
 .tdbc-h1 {
   font-size: $tdbc-h1-font-size;
-  font-size: unquote("min(max(3rem, 5vw), #{$tdbc-h1-font-size})");
+  font-size: unquote("min(max(2.7rem, 5vw), #{$tdbc-h1-font-size})");
 }
 
 h2,
