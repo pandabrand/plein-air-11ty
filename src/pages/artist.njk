@@ -28,7 +28,7 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
       </div>
     </header>
     <section class="images">
-      {% if paintingDate.artistImages %}
+      {% if paintingDate.artistImages | length %}
         <div class="images-row">
           <h5>Artist Images</h5>
             {% set images = paintingDate.artistImages %}
@@ -36,7 +36,7 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
             {% include 'carousel.njk' %}
         </div>
       {% endif %}
-      {% if paintingDate.leslieImages %}
+      {% if paintingDate.leslieImages | length %}
         <div class="images-row">
           <h5>Leslie Images</h5>
           {% set images = paintingDate.leslieImages %}
@@ -44,10 +44,10 @@ permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title |
           {% include 'carousel.njk' %}
         </div>
       {% endif %}
-      {% if paintingDate.LocationImages %}
+      {% if paintingDate.locationImages | length %}
         <div class="images-row">
           <h5>Location Images</h5>
-            {% set images = paintingDate.LocationImages %}
+            {% set images = paintingDate.locationImages %}
             {% set swipeClass = 'location' %}
             {% include 'carousel.njk' %}
         </div>
