@@ -60,9 +60,7 @@ module.exports = async function () {
           };
           if (imageObj?.imageType?.name == 'Portait') {
             ioObject['transformation'] = [{
-              'height': '485',
-              'width': '800',
-              'focus': 'auto',
+              named: 'portrait_mode',
             }];
           }
           imageObj['imageKitUrl'] = imagekit.url(ioObject)
