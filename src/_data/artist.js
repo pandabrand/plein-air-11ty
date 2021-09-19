@@ -47,7 +47,7 @@ module.exports = async function () {
   let archiveNumInt = 0;
   try {
     const data = await request(endpoint, artistPageQuery);
-    data.posts.nodes.reverse().map((node) => {
+    data.posts.nodes.map((node) => {
       const title = node.title;
       const content = node.content;
       node.paintingDates.paintDates.forEach((paintDate) => {
@@ -60,7 +60,9 @@ module.exports = async function () {
           };
           if (imageObj?.imageType?.name == 'Portait') {
             ioObject['transformation'] = [{
-              named: 'portrait_mode',
+              'height': '485',
+              'width': '800',
+              'focus': 'auto',
             }];
           }
           imageObj['imageKitUrl'] = imagekit.url(ioObject)
@@ -84,6 +86,21 @@ module.exports = async function () {
         exportPaintDates.push(paintDate);
         archiveNumInt++;
       })
+    })
+
+    exportPaintDates.sort(function(a, b) {
+      let titleA = a.title.toUpperCase();
+      let titleB = b.title.toUpperCase();
+
+      if( titleA < titleB ) {
+        return -1;
+      }
+
+      if( titleA > titleB ) {
+        return 1;
+      }
+
+      return 0;
     })
 
     return exportPaintDates;

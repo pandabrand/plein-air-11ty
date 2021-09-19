@@ -10,20 +10,22 @@ permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
 <div class="tdbc-container">
   <div class="tdbc-column-container">
     {% for item in pagination.items %}
-      <div class="tdbc-card">
-        <div class="tdbc-card__content">
-          <div class="tdbc-card-image">
-            <img src="{{item.panImage}}" alt="">
-          </div>
-            <a class="tdbc-card__title" href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
-              <p>{{ item.date }}</p>
-            </a>
-            <div class="tdbc-card-text">
-              <p>{{ item.title }}</p>
-              <p>{{ item.location[0].name }}</p>
+      <a class="tdbc-card__link" href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
+        <div class="tdbc-card">
+          <div class="tdbc-card__content">
+            <div class="tdbc-card-image">
+              <img src="{{item.panImage}}" alt="">
             </div>
+            <div class="tdbc-card__body">
+                <p class="tdbc-card__title">{{ item.date }}</p>
+              <div class="tdbc-card-text">
+                <p>{{ item.title }}</p>
+                <p>{{ item.location[0].name }}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </a>
     {% endfor %}
   </div>
   <nav aria-labelledby="my-pagination">
