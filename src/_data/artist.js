@@ -11,6 +11,7 @@ module.exports = async function () {
           content
           paintingDates {
             paintDates {
+              showThisDate
               location {
                 name
               }
@@ -51,40 +52,42 @@ module.exports = async function () {
       const title = node.title;
       const content = node.content;
       node.paintingDates.paintDates.forEach((paintDate) => {
-        paintDate['title'] = title;
-        paintDate['content'] = content;
-        paintDate.images.map((imageObj) => {
-          ioObject = {
-            path: imageObj.image?.sourceUrl?.substring(spacesUrl.length),
-            endpoint: imageKitEndpoint,
-          };
-          if (imageObj?.imageType?.name == 'Portait') {
-            ioObject['transformation'] = [{
-              'height': '485',
-              'width': '800',
-              'focus': 'auto',
-            }];
-          }
-          imageObj['imageKitUrl'] = imagekit.url(ioObject)
-
-          if (imageObj?.imageType?.name != 'Portait') {
-            ioObject['transformation'] = [{
-              height: '300',
-              width: '300',
-              crop: 'at_max'
-            }];
-            imageObj['imageKitThumbUrl'] = imagekit.url(ioObject)
-          }
-        })
-        paintDate['portrait'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Portait')
-        paintDate['artistImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Artist Image')
-        paintDate['leslieImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Leslie Image')
-        paintDate['locationImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Location')
-        archiveNumInt = (panNumbers.length === archiveNumInt) ? 0 : archiveNumInt;
-        const imagePath = `https://ik.imagekit.io/studiofwww/2021/04/archive-${panNumbers[archiveNumInt]}@2x.png`;
-        paintDate['panImage'] = imagePath;
-        exportPaintDates.push(paintDate);
-        archiveNumInt++;
+        if(paintDate.showThisDate) {
+          paintDate['title'] = title;
+          paintDate['content'] = content;
+          paintDate.images.map((imageObj) => {
+            ioObject = {
+              path: imageObj.image?.sourceUrl?.substring(spacesUrl.length),
+              endpoint: imageKitEndpoint,
+            };
+            if (imageObj?.imageType?.name == 'Portait') {
+              ioObject['transformation'] = [{
+                'height': '485',
+                'width': '800',
+                'focus': 'auto',
+              }];
+            }
+            imageObj['imageKitUrl'] = imagekit.url(ioObject)
+            
+            if (imageObj?.imageType?.name != 'Portait') {
+              ioObject['transformation'] = [{
+                height: '300',
+                width: '300',
+                crop: 'at_max'
+              }];
+              imageObj['imageKitThumbUrl'] = imagekit.url(ioObject)
+            }
+          })
+          paintDate['portrait'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Portait')
+          paintDate['artistImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Artist Image')
+          paintDate['leslieImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Leslie Image')
+          paintDate['locationImages'] = paintDate.images.filter(imageObj => imageObj?.imageType?.name == 'Location')
+          archiveNumInt = (panNumbers.length === archiveNumInt) ? 0 : archiveNumInt;
+          const imagePath = `https://ik.imagekit.io/studiofwww/2021/04/archive-${panNumbers[archiveNumInt]}@2x.png`;
+          paintDate['panImage'] = imagePath;
+          exportPaintDates.push(paintDate);
+          archiveNumInt++;
+        }
       })
     })
 
