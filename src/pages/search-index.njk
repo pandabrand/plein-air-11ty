@@ -1,0 +1,16 @@
+---
+data: artist
+layout: json
+permalink: "/search-index.json"
+---
+[
+  {% for index in artist %}
+    {
+      "title": "{{ index.title }}",
+      "date": "{{ index.date }}",
+      "location": "{{ index.location[0].name }}",
+      "content": "{{ index.content | stripEverything }}",
+      "url": "/painting-date/{{ index.date | slug }}-{{ index.title | slug }}/"
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
