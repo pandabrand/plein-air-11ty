@@ -7,6 +7,11 @@
 
   .hit-link {
     color: $tdbc-color-body;
+
+    h5,
+    p {
+      text-transform: capitalize;
+    }
   }
 }
 
