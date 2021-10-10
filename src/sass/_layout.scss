@@ -27,7 +27,7 @@ footer {
 }
 
 article {
-  margin-top: 5rem;
+  margin-top: 2rem;
   max-width: 100%;
 
   > img {
@@ -49,13 +49,17 @@ article {
   margin-right: auto;
   margin-left: auto;
   padding: 2rem 1rem;
+
+  &-essay {
+    max-width: 80ch;
+  }
 }
 
 .tdbc-column-container {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   display: grid;
   grid-gap: 2em;
-  
+
   &.wide {
     grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
   }
@@ -94,8 +98,8 @@ ul.tdbc-column-container {
 
 .tdbc-hero {
   display: grid;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   text-align: left;
 
   .tdbc-container {
@@ -105,7 +109,7 @@ ul.tdbc-column-container {
 
   h1 {
     font: normal normal normal 24px/24px Syne;
-    color: tdbc-color('text');
+    color: tdbc-color("text");
   }
 }
 
