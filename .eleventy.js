@@ -98,6 +98,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "./src/js/carousel.js": "assets/js/carousel.js",
     "./src/js/nav.js": "assets/js/nav.js",
+    "./src/js/fslightbox.js": "assets/js/fslightbox.js",
   });
 
   return {
