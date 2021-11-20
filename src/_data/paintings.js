@@ -4,7 +4,7 @@ const ImageKit = require("imagekit");
 module.exports = async function () {
   const paintingsQuery = gql`
       query PaintingsQuery($search: String!) {
-        mediaItems(where: {search: $search}, first: 25) {
+        mediaItems(where: {search: $search}, first: 45) {
           nodes {
             sourceUrl
             description
