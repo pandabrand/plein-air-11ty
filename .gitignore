@@ -11,7 +11,7 @@ social
 
 # secrets and errors
 .env
-.log
+*.log
 
 # macOS related files
 .DS_Store

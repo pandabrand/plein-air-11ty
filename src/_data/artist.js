@@ -2,15 +2,16 @@ const { request, gql } = require('graphql-request');
 const ImageKit = require("imagekit");
 
 
-module.exports = async function() {
+module.exports = async function () {
   const artistPageQuery = gql`
     query artistPostsQuery {
-      posts(first: 100) {
+      posts(first: 310) {
         nodes {
           title
           content
           paintingDates {
             paintDates {
+              showThisDate
               location {
                 name
               }
@@ -22,6 +23,9 @@ module.exports = async function() {
                 imageType {
                   name
                 }
+                imageCredit {
+                  name
+                }
               }
             }
           }
@@ -29,25 +33,26 @@ module.exports = async function() {
       }
     }
   `;
-    const endpoint = process.env.GRAPHQL_URL;
-    const imageKitEndpoint = process.env.IK_ENDPOINT;
-    const spacesUrl = process.env.DO_ENDPOINT;
-  
-    var imagekit = new ImageKit({
-        publicKey : process.env.IK_PUBLIC_KEY,
-        privateKey : process.env.IK_PRIVATE_KEY,
-        urlEndpoint : imageKitEndpoint
-    });
-  
-    let exportPaintDates = [];
-    const panNumbers = [1,2,3,4,5,6,7,8,9,5,3,2,6,1,7,4,9,8];
-    let archiveNumInt = 0;
-    try {
-      const data = await request(endpoint, artistPageQuery);
-      data.posts.nodes.reverse().map((node) => {
-        const title = node.title;
-        const content = node.content;
-        node.paintingDates.paintDates.forEach((paintDate) => {
+  const endpoint = process.env.GRAPHQL_URL;
+  const imageKitEndpoint = process.env.IK_ENDPOINT;
+  const spacesUrl = process.env.DO_ENDPOINT;
+
+  var imagekit = new ImageKit({
+    publicKey: process.env.IK_PUBLIC_KEY,
+    privateKey: process.env.IK_PRIVATE_KEY,
+    urlEndpoint: imageKitEndpoint
+  });
+
+  let exportPaintDates = [];
+  const panNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 5, 3, 2, 6, 1, 7, 4, 9, 8];
+  let archiveNumInt = 0;
+  try {
+    const data = await request(endpoint, artistPageQuery);
+    data.posts.nodes.map((node) => {
+      const title = node.title;
+      const content = node.content;
+      node.paintingDates.paintDates.forEach((paintDate) => {
+        if(paintDate.showThisDate) {
           paintDate['title'] = title;
           paintDate['content'] = content;
           paintDate.images.map((imageObj) => {
@@ -55,7 +60,7 @@ module.exports = async function() {
               path: imageObj.image?.sourceUrl?.substring(spacesUrl.length),
               endpoint: imageKitEndpoint,
             };
-            if(imageObj?.imageType?.name == 'Portait') {
+            if (imageObj?.imageType?.name == 'Portait') {
               ioObject['transformation'] = [{
                 'height': '485',
                 'width': '800',
@@ -63,8 +68,8 @@ module.exports = async function() {
               }];
             }
             imageObj['imageKitUrl'] = imagekit.url(ioObject)
-
-            if(imageObj?.imageType?.name != 'Portait') {
+            
+            if (imageObj?.imageType?.name != 'Portait') {
               ioObject['transformation'] = [{
                 height: '300',
                 width: '300',
@@ -82,13 +87,29 @@ module.exports = async function() {
           paintDate['panImage'] = imagePath;
           exportPaintDates.push(paintDate);
           archiveNumInt++;
-        })
+        }
       })
-  
-      return exportPaintDates;
-  
-    } catch (error) {
-      console.log(error)
-      throw new Error( error );
+    })
+
+    exportPaintDates.sort(function(a, b) {
+      let titleA = a.title.toUpperCase();
+      let titleB = b.title.toUpperCase();
+
+      if( titleA < titleB ) {
+        return -1;
+      }
+
+      if( titleA > titleB ) {
+        return 1;
+      }
+
+      return 0;
+    })
+
+    return exportPaintDates;
+
+  } catch (error) {
+    console.error(error)
+    throw new Error(error);
   }
 }

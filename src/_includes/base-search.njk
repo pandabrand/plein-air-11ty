@@ -1,0 +1,44 @@
+{% extends './base.njk' %}
+
+{% block footerScripts %}
+  {{ super() }}
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.10.5/dist/algoliasearch.umd.min.js"></script>
+  <script src="https://unpkg.com/instantsearch.js@4.30.2/dist/instantsearch.production.min.js"></script>
+  <script>
+    const search = instantsearch({
+      indexName: 'plein-air-index',
+      searchClient: algoliasearch('{{ meta.ALG_APP_ID }}', '{{ meta.ALG_API_KEY }}'),
+      searchFunction(helper) {
+        const hits = document.getElementById('hits');
+        hits.style.display = helper.state.query === '' ? 'none' : '';
+        helper.search();
+      }
+    });
+
+    search.addWidgets([
+      instantsearch.widgets.searchBox({
+        container: '#searchbox',
+        placeholder: 'Search for artists, places, or dates',
+        searchAsYouType: false,
+        showSubmit: true
+      }),
+
+      {% raw %}
+      instantsearch.widgets.hits({
+        container: '#hits',
+        templates: {
+          item: `
+            <a class="hit-link" href="{{ url }}">
+              <h5>{{#helpers.highlight}}{ "attribute": "title", "highlightedTagName": "strong" }{{/helpers.highlight}}</h5>
+              <p>{{#helpers.highlight}}{ "attribute": "location", "highlightedTagName": "strong" }{{/helpers.highlight}}</p>
+              <p>{{#helpers.highlight}}{ "attribute": "date", "highlightedTagName": "strong" }{{/helpers.highlight}}</p>
+            </a>
+          `,
+        },
+      }),
+      {% endraw %}
+    ]);
+
+    search.start();
+  </script>
+{% endblock %}

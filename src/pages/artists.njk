@@ -1,29 +1,35 @@
 ---
-layout: base
+layout: './base-search.njk'
 title: Archives
-sortOrder: 4
+sortOrder: 1
 pagination:
   data: artist
   size: 18
 permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
 ---
 <div class="tdbc-container">
+  <div class="search-container">
+    <div id="searchbox"></div>
+    <div id="hits"></div>
+  </div>
   <div class="tdbc-column-container">
     {% for item in pagination.items %}
-      <div class="tdbc-card">
-        <div class="tdbc-card__content">
-          <div class="tdbc-card-image">
-            <img src="{{item.panImage}}" alt="">
-          </div>
-            <a class="tdbc-card__title" href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
-              <p>{{ item.date }}</p>
-            </a>
-            <div class="tdbc-card-text">
-              <p>{{ item.title }}</p>
-              <p>{{ item.location[0].name }}</p>
+      <a class="tdbc-card__link" href="/painting-date/{{ item.date | slug }}-{{ item.title | slug }}/">
+        <div class="tdbc-card">
+          <div class="tdbc-card__content">
+            <div class="tdbc-card-image">
+              <img src="{{item.panImage}}" alt="">
             </div>
+            <div class="tdbc-card__body">
+                <p class="tdbc-card__title">{{ item.date }}</p>
+              <div class="tdbc-card-text">
+                <p>{{ item.title }}</p>
+                <p>{{ item.location[0].name }}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </a>
     {% endfor %}
   </div>
   <nav aria-labelledby="my-pagination">
@@ -31,6 +37,9 @@ permalink: "artists/{{ pagination.pageNumber + 1 }}/index.html"
     <ul class="tdbc-row tdbc-row--center-content tdbc-row--center-content tdbc-list-unstyled">
       <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% else %}First{% endif %}</li>
       <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Previous</a>{% else %}Previous{% endif %}</li>
+      {% for pageEntry in pagination.pages %}
+        <li><a href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index }}</a></li>
+      {% endfor %}
       <li>{% if pagination.page.next %}<a href="{{ pagination.href.next }}">Next</a>{% else %}Next{% endif %}</li>
       <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">Last</a>{% else %}Last{% endif %}</li>
     </ul>

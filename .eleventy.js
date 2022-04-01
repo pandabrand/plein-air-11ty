@@ -24,6 +24,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("packageVersion", () => `v${packageVersion}`);
 
   eleventyConfig.addLayoutAlias('base', 'base.njk');
+  eleventyConfig.addLayoutAlias('json', 'json.njk');
   
   eleventyConfig.addFilter("slug", (str) => {
     if (!str) {
@@ -39,6 +40,36 @@ module.exports = function (eleventyConfig) {
       replacement: "-",
       remove: /[*+~·,()'"`´%!?¿:@\/]/g,
     });
+  });
+
+  eleventyConfig.addFilter('stripTags', (str) => {
+    if(!str) {
+      return;
+    }
+
+    const regex = /(<([^>]+)>)/gi;
+
+    return str.replace(regex, '');
+  });
+
+  eleventyConfig.addFilter('stripNewlines', (str) => {
+    if(!str) {
+      return;
+    }
+
+    const regex = /\r?\n|\r/g;
+
+    return str.replace(regex, '');
+  });
+
+  eleventyConfig.addFilter('stripEverything', (str) => {
+    if(!str) {
+      return;
+    }
+    const tags = /(<([^>]+)>)/gi;
+    const newlines = /\r?\n|\r/g;
+
+    return str.replace(tags, '').replace(newlines, '');
   });
 
   /* Markdown Overrides */
@@ -67,6 +98,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "./src/js/carousel.js": "assets/js/carousel.js",
     "./src/js/nav.js": "assets/js/nav.js",
+    "./src/js/fslightbox.js": "assets/js/fslightbox.js",
   });
 
   return {

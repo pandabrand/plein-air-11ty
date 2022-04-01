@@ -1,17 +1,12 @@
 {% extends './base.njk' %}
 {% block headStyles %}
   {{ super() }}
-  <link rel="stylesheet" href="https://unpkg.com/swiper@6.6.1/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="//unpkg.com/swiper@6.6.1/swiper-bundle.min.css" />
 {% endblock %}
 
 {% block footerScripts %}
   {{ super() }}
-  <div id="lightbox" class="lightbox hidden">
-    <div onClick="closeLightbox()" class="close">❌</div>
-      <div class="lightbox-content">
-        <img id="lightbox-image" />
-      </div>
-  </div>
-    <script src="https://unpkg.com/swiper@6.6.1/swiper-bundle.min.js"></script>
+    <script src="//unpkg.com/swiper@6.6.1/swiper-bundle.min.js"></script>
     <script src="{{ '/assets/js/carousel.js' | url }}"></script>
+    <script src="{{ '/assets/js/fslightbox.js' | url }}"></script>
 {% endblock %}

@@ -80,3 +80,15 @@ $tdbc-alignments: left, center, right !default;
 .tdbc-mb-none {
   margin-bottom: 0;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+
+  &.flex {
+    display: flex;
+  }
+}

@@ -1,15 +1,18 @@
 const { request, gql } = require('graphql-request');
 const ImageKit = require("imagekit");
 
-module.exports = async function() {
+module.exports = async function () {
   const paintingsQuery = gql`
       query PaintingsQuery($search: String!) {
-        mediaItems(where: {search: $search}, first: 25) {
+        mediaItems(where: {search: $search}, first: 45) {
           nodes {
             sourceUrl
             description
             altText
           }
+        }
+        pageBy(uri: "shaping-the-day-paintings") {
+          content
         }
       }
   `;
@@ -20,9 +23,9 @@ module.exports = async function() {
   const spacesUrl = process.env.DO_ENDPOINT;
 
   var imagekit = new ImageKit({
-      publicKey : process.env.IK_PUBLIC_KEY,
-      privateKey : process.env.IK_PRIVATE_KEY,
-      urlEndpoint : imageKitEndpoint
+    publicKey: process.env.IK_PUBLIC_KEY,
+    privateKey: process.env.IK_PRIVATE_KEY,
+    urlEndpoint: imageKitEndpoint
   });
 
   try {
@@ -36,9 +39,9 @@ module.exports = async function() {
       });
     })
 
-    return data.mediaItems.nodes;
+    return data;
 
   } catch (error) {
-    throw new Error( error );
+    throw new Error(error);
   }
 }

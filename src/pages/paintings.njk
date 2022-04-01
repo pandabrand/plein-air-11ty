@@ -1,24 +1,23 @@
 ---
 layout: base
 title: "Paintings"
-sortOrder: 2
+sortOrder: 3
 ---
 <div class="tdbc-container">
   <main>
     <article>
-      <p>Something will be put here that says something nice.</p>
+      <h1>Shaping The Day Paintings</h1>
+      <p>{{ paintings.pageBy.content | safe }}</p>
     </article>
+    <div class="tdbc-two-column-container">
+      {% for node in paintings.mediaItems.nodes %}
+          <div>
+              <img src="{{node.imageKitUrl}}" alt="">
+            <div>
+              <p>{{ node.description | safe }}</p>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
   </main>
-  <div class="tdbc-column-container wide">
-    {% for node in paintings %}
-        <div class="">
-          <div class="">
-            <img src="{{node.imageKitUrl}}" alt="">
-          </div>
-          <div class="">
-            <p>{{ node.description | safe }}</p>
-          </div>
-        </div>
-    {% endfor %}
-  </div>
 </div>

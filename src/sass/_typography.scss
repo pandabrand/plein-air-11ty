@@ -15,7 +15,7 @@ $tdbc-typography-variants: h1, h2, h3, h4;
 h1,
 .tdbc-h1 {
   font-size: $tdbc-h1-font-size;
-  font-size: unquote("min(max(3rem, 5vw), #{$tdbc-h1-font-size})");
+  font-size: unquote("min(max(2.7rem, 5vw), #{$tdbc-h1-font-size})");
 }
 
 h2,
@@ -121,4 +121,47 @@ blockquote {
 .tdbc-list-unstyled {
   list-style: none;
   padding: 0;
+}
+
+hr.wp-block-separator {
+  margin: 8rem auto;
+  color: $tdbc-color-gray;
+  width: calc(100% - 4rem);
+  max-width: 58rem;
+  background: linear-gradient(
+    to left,
+    currentColor calc(50% - 16px),
+    transparent calc(50% - 16px),
+    transparent calc(50% + 16px),
+    currentColor calc(50% + 16px)
+  );
+  background-color: transparent !important;
+  border: none;
+  height: 0.1rem;
+  overflow: visible;
+  position: relative;
+
+  &::before {
+    background: currentColor;
+    content: "";
+    display: block;
+    height: 1.6rem;
+    position: absolute;
+    top: calc(50% - 0.8rem);
+    left: calc(50% - 0.5rem);
+    transform: rotate(22.5deg);
+    width: 0.1rem;
+  }
+
+  &::after {
+    background: currentColor;
+    content: "";
+    display: block;
+    height: 1.6rem;
+    position: absolute;
+    top: calc(50% - 0.8rem);
+    right: calc(50% - 0.5rem);
+    transform: rotate(22.5deg);
+    width: 0.1rem;
+  }
 }

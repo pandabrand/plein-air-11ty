@@ -2,7 +2,12 @@
   <div class="swiper-wrapper">
     {% for image in images %}
       <div class="swiper-slide">
-        <img data-full-src="{{image.imageKitUrl}}" src="{{image.imageKitThumbUrl}}" alt="" onClick="openLightbox(this)">
+        <a data-fslightbox="{{ swipeClass }}-lightbox" href="{{image.imageKitUrl}}">
+          <img src="{{image.imageKitThumbUrl}}" alt="">
+          {% if image.imageCredit %}
+            <div>{{ image.imageCredit[0].name }}</div>
+          {% endif %}
+        </a>
       </div>
     {% endfor %}
   </div>
