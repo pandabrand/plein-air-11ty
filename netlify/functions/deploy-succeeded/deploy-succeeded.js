@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+const axios = require('axios')
 const indexing = require('algolia-indexing');
 const algCredentials = {
   appId: process.env.ALG_APP_ID,
@@ -8,14 +8,20 @@ const algCredentials = {
 
 const handler = async function () {
   try {
-    const response = await fetch('https://pleinairarchive.com/search-index.json', {
+    const response = await axios({
+      url: 'https://pleinairarchive.com/search-index.json',
+      method: 'get',
       headers: { Accept: 'application/json' },
     })
-    if (!response.ok) {
+
+    // const response = await fetch('https://pleinairarchive.com/search-index.json', {
+    //   headers: { Accept: 'application/json' },
+    // })
+    if (!response.status >= 200 && !response.status < 300) {
       // NOT res.status >= 200 && res.status < 300
       return { statusCode: response.status, body: response.statusText }
     }
-    const data = await response.json()
+    const data = await response.data
 
     indexing.verbose();
 
