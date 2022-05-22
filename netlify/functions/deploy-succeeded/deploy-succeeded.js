@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
-import indexing from 'algolia-indexing';
+const fetch = require('node-fetch')
+const indexing = require('algolia-indexing');
 const algCredentials = {
   appId: process.env.ALG_APP_ID,
   apiKey: process.env.ALG_API_KEY,
