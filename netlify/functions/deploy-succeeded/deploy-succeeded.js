@@ -2,7 +2,7 @@ const axios = require('axios')
 const indexing = require('algolia-indexing');
 const algCredentials = {
   appId: process.env.ALG_APP_ID,
-  apiKey: process.env.ALG_API_KEY,
+  apiKey: process.env.ALG_ADMIN_KEY,
   indexName: 'plein-air-index'
 };
 
