@@ -2,11 +2,12 @@
 
 {% block footerScripts %}
   {{ super() }}
+  
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.10.5/dist/algoliasearch.umd.min.js"></script>
   <script src="https://unpkg.com/instantsearch.js@4.30.2/dist/instantsearch.production.min.js"></script>
   <script>
     const search = instantsearch({
-      indexName: 'plein-air-index',
+      indexName: 'netlify_417790bb-0324-4812-b73a-ad22db8a5d34_main_all',
       searchClient: algoliasearch('{{ meta.ALG_APP_ID }}', '{{ meta.ALG_API_KEY }}'),
       searchFunction(helper) {
         const hits = document.getElementById('hits');

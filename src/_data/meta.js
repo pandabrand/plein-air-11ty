@@ -7,4 +7,6 @@ module.exports = {
   twitterUsername: "pandabrand", // no `@`
   ALG_APP_ID: process.env.ALG_APP_ID,
   ALG_API_KEY: process.env.ALG_API_KEY,
+  NETLIFY_ID: process.env.NETLIFY_ID,
+  REPO_BRANCH: process.env.BRANCH,
 };

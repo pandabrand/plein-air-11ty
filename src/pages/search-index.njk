@@ -10,7 +10,11 @@ eleventyExcludeFromCollections: true
       "title": "{{ index.title }}",
       "date": "{{ index.date }}",
       "location": "{{ index.location[0].name }}",
-      "content": "{{ index.content | stripEverything }}",
+      {% if index.content %}
+        "content": "{{ index.content | stripEverything }}",
+      {% else %}
+        "content": "",
+      {% endif %}
       "url": "/painting-date/{{ index.date | slug }}-{{ index.title | slug }}/"
     }{% if not loop.last %},{% endif %}
   {% endfor %}

@@ -7,7 +7,6 @@ layout: basecarousel
 permalink: "painting-date/{{ paintingDate.date | slug }}-{{ paintingDate.title | slug }}/"
 eleventyExcludeFromCollections: true
 ---
-  
 <div class="tdbc-container">
   <article class="artist">
     <header>
@@ -24,7 +23,9 @@ eleventyExcludeFromCollections: true
           </div>
         </section>
         <section class="image--portrait">
-          <img src="{{paintingDate.portrait[0].imageKitUrl}}" alt="" srcset="">
+          {% if paintingDate.portrait | length %}
+            <img src="{{paintingDate.portrait[0].imageKitUrl}}" alt="" srcset="">
+          {% endif %}
         </section>
       </div>
     </header>

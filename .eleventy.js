@@ -94,7 +94,11 @@ module.exports = function (eleventyConfig) {
     let copyValues = [...values];
     return copyValues.sort((a, b) => Math.sign(a.data.sortOrder - b.data.sortOrder));
   });
-  
+
+  eleventyConfig.setNunjucksEnvironmentOptions({
+    throwOnUndefined: true,
+  });
+
   eleventyConfig.addPassthroughCopy({
     "./src/js/carousel.js": "assets/js/carousel.js",
     "./src/js/nav.js": "assets/js/nav.js",
