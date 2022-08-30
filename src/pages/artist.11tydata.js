@@ -1,5 +1,5 @@
 module.exports = {
     eleventyComputed: {
-        title: artist => artist.title + ' - ' + artist.date
+        title: data => data.artist.title + ' - ' + data.artist.date
     }
 }
