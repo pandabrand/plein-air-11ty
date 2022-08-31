@@ -19,7 +19,7 @@ exports.handler = () => {
   
   // Add new objects to the index
   // https://www.algolia.com/doc/api-reference/api-methods/add-objects/
-  axios.get('./search-index.json')
+  axios.get('/search-index.json')
   .then((response) => {
     index
     .saveObjects(response)
