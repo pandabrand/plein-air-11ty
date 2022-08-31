@@ -74,9 +74,10 @@ module.exports = async function () {
           if(paintDate.showThisDate) {
             paintDate['title'] = title;
             paintDate['content'] = content;
-            const dateMilli = new Date(paintDate.date).getMilliseconds()
-            paintDate['id'] = `${id}_${dateMilli}`
-            
+            const eventTime = new Date(paintDate.date).getTime()
+            const stripTitle = title.replace(/\s+|,+/g, '')
+            paintDate['id'] = `${id}_${eventTime}_${stripTitle}`
+
             paintDate.images.map((imageObj) => {
               ioObject = {
                 path: imageObj.image?.sourceUrl?.substring(spacesUrl.length),

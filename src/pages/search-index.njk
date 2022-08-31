@@ -7,6 +7,7 @@ eleventyExcludeFromCollections: true
 [
   {% for index in artist %}
     {
+      "objectID": "{{ index.id }}",
       "title": "{{ index.title }}",
       "date": "{{ index.date }}",
       "location": "{{ index.location[0].name }}",
