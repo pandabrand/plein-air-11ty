@@ -10,6 +10,7 @@ module.exports = async function () {
       posts(first: $first, after: $after) {
         edges {
           node {
+            databaseId
             title
             content
             paintingDates {
@@ -67,11 +68,15 @@ module.exports = async function () {
         const node = edge.node
         const title = node.title;
         const content = node.content;
+        const id = node.databaseId
 
         node.paintingDates.paintDates.forEach((paintDate) => {
           if(paintDate.showThisDate) {
             paintDate['title'] = title;
             paintDate['content'] = content;
+            const dateMilli = new Date(paintDate.date).getMilliseconds()
+            paintDate['id'] = `${id}_${dateMilli}`
+            
             paintDate.images.map((imageObj) => {
               ioObject = {
                 path: imageObj.image?.sourceUrl?.substring(spacesUrl.length),
