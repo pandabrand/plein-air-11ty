@@ -22,7 +22,7 @@ exports.handler = () => {
   axios.get('https://pleinairarchive.com/search-index.json')
   .then((response) => {
     index
-    .saveObjects(response)
+    .saveObjects(response.data)
     // Wait for the indexing task to complete
     // https://www.algolia.com/doc/api-reference/api-methods/wait-task/
     .wait()
@@ -31,7 +31,9 @@ exports.handler = () => {
       // Search the index for "Fo"
       // https://www.algolia.com/doc/api-reference/api-methods/search/
       index.search("Fo").then((objects) => console.log(objects)).catch();
-    }) ;
+    })
+    .catch(error => console.error(error) );
   })
+  .catch(error => console.error(error))
 }
   
