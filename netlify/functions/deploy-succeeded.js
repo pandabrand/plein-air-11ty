@@ -4,8 +4,8 @@ const axios = require('axios')
 
 dotenv.config();
 
-const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
-const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY;
+const ALGOLIA_APP_ID = process.env.ALG_APP_ID;
+const ALGOLIA_API_KEY = process.env.ALG_ADMIN_KEY;
 const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME;
 // Start the API client
 // https://www.algolia.com/doc/api-client/getting-started/instantiate-client-index/
