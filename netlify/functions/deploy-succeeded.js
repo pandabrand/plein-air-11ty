@@ -22,7 +22,7 @@ exports.handler = () => {
   axios.get('https://pleinairarchive.com/search-index.json')
   .then((response) => {
     index
-    .saveObjects(response.data, { autoGenerateObjectIDIfNotExist: true })
+    .saveObjects(response.data)
     // Wait for the indexing task to complete
     // https://www.algolia.com/doc/api-reference/api-methods/wait-task/
     .wait()
