@@ -11,6 +11,8 @@
       </div>
     {% endfor %}
   </div>
-  <div class="swiper-button-prev {{ swipeClass }}-prev"></div>
-  <div class="swiper-button-next {{ swipeClass }}-next"></div>
+  {% if images | length > 1 %}
+    <div class="swiper-button-prev {{ swipeClass }}-prev"></div>
+    <div class="swiper-button-next {{ swipeClass }}-next"></div>
+  {% endif %}
 </div>

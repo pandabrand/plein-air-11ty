@@ -147,4 +147,15 @@
     }
   }
 }
+
+.pagination {
+  a {
+    &.active {
+      color: tdbc-color('secondary');
+      font-weight: $tdbc-strong-font-weight;
+      text-decoration: none;
+    }
+  }
+}
+
 // stylelint-enable

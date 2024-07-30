@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
 <div class="tdbc-container">
   <article class="artist">
     <header>
-      <div class="tdbc-column-container">
+      <div class="tdbc-column-container-artist">
         <section class="text-box">
           <h2>Recollections</h2>
           <div class="text-box--header">
@@ -23,9 +23,11 @@ eleventyExcludeFromCollections: true
             {{paintingDate.content | safe}}
           </div>
         </section>
-        <section class="image--portrait">
-          <img src="{{paintingDate.portrait[0].imageKitUrl}}" alt="" srcset="">
-        </section>
+        {% if paintingDate.portrait[0].imageKitUrl | length %}
+          <section class="image--portrait">
+            <img src="{{paintingDate.portrait[0].imageKitUrl}}" alt="" srcset="">
+          </section>
+        {% endif %}
       </div>
     </header>
     <section class="images">
