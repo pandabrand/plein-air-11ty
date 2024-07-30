@@ -85,9 +85,10 @@ module.exports = async function () {
               };
               if (imageObj?.imageType?.name == 'Portait') {
                 ioObject['transformation'] = [{
-                  'height': '485',
+                  'height': '600',
                   'width': '800',
-                  'focus': 'auto',
+                  'focus': 'person',
+                  'crop': 'at_max',
                 }];
               }
               imageObj['imageKitUrl'] = imagekit.url(ioObject)
@@ -96,7 +97,7 @@ module.exports = async function () {
                 ioObject['transformation'] = [{
                   height: '300',
                   width: '300',
-                  crop: 'at_max'
+                  crop: 'at_max_enlarge'
                 }];
                 imageObj['imageKitThumbUrl'] = imagekit.url(ioObject)
               }
