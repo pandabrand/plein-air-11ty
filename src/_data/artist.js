@@ -87,7 +87,7 @@ module.exports = async function () {
                 ioObject['transformation'] = [{
                   'height': '600',
                   'width': '800',
-                  'focus': 'person',
+                  'focus': 'face',
                   'crop': 'at_max',
                 }];
               }
