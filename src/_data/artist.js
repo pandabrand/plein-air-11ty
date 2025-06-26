@@ -85,10 +85,10 @@ module.exports = async function () {
               };
               if (imageObj?.imageType?.name == 'Portait') {
                 ioObject['transformation'] = [{
-                  'height': '600',
                   'width': '800',
-                  'focus': 'face',
-                  'crop': 'at_max',
+                  'focus': 'person',
+                  'format': 'WebP',
+                  'quality': '80',
                 }];
               }
               imageObj['imageKitUrl'] = imagekit.url(ioObject)
